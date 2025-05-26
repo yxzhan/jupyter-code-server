@@ -16,6 +16,7 @@ Running VSCode Web IDE code-server inside the Jupyter environment.
     - [Setting the working directory](#setting-the-working-directory)
     - [Using pre-started code-server](#using-pre-started-code-server)
     - [Enable/disable launcher](#enabledisable-launcher)
+    - [Disable password login](#disable-password-login)
     - [Loading code-server using Lmod](#loading-code-server-using-lmod)
 
 
@@ -65,6 +66,11 @@ By default code-server launcher is enabled and visible in JupyterLab. Option `JS
 may be set to any non-empty value to disable launcher. This is useful when e.g. certain users are not supposed
 to have code-server available in Jupyterhub as there is no easy way to disable loading of entire `jupyter-code-server`
 module for these users if module is for example built into Docker image.
+
+### Disable password login
+
+By default, code-server is started with password authentication enabled.
+To disable password login (e.g., for internal or trusted environments), set the environment variable `CODE_DISABLE_PASSWORD` to `true`.
 
 ### Loading code-server using Lmod
 
