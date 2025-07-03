@@ -79,12 +79,13 @@ def setup_code_server():
     command_arguments = [
         '--socket={unix_socket}',
         '--disable-update-check',
-        '--disable-file-uploads',
-        '--disable-file-downloads',
+        # '--disable-file-uploads',
+        # '--disable-file-downloads',
+        '--disable-workspace-trust',
         '--ignore-last-opened'  # needed to set a specific working directory
     ]
 
-    disable_password = os.environ.get('CODE_DISABLE_PASSWORD', 'false').lower() in ('1', 'true', 'yes')
+    disable_password = os.environ.get('CODE_DISABLE_PASSWORD', 'true').lower() in ('1', 'true', 'yes')
 
     if disable_password:
         command_arguments.append('--auth=none')
@@ -92,7 +93,7 @@ def setup_code_server():
         command_arguments.append('--auth=password')
 
 
-    full_command = [which_code_server()] + command_arguments + additional_arguments + ['--'] + [working_directory]
+    full_command = [which_code_server()] + command_arguments + additional_arguments + [working_directory]
     proxy_config_dict.update({
         "command": full_command,
         "unix_socket": socket_file_name
